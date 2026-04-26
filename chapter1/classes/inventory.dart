@@ -18,6 +18,7 @@ class Inventory {
     required GuitarType type,
     required Wood backWood,
     required Wood topWood,
+    required int numberOfStrings,
   }) {
     _guitars.add(
       Guitar(
@@ -29,6 +30,7 @@ class Inventory {
           guitarType: type,
           backWood: backWood,
           topWood: topWood,
+          numberOfStrings: numberOfStrings,
         ),
       ),
     );
@@ -46,11 +48,7 @@ class Inventory {
   List<Guitar> search(GuitarSpecs searchGuitarSpecs) {
     List<Guitar> matchingGuitars = [];
     for (Guitar guitar in _guitars) {
-      if (guitar.specs.builder == searchGuitarSpecs.builder &&
-          guitar.specs.model == searchGuitarSpecs.model &&
-          guitar.specs.type == searchGuitarSpecs.type &&
-          guitar.specs.backWood == searchGuitarSpecs.backWood &&
-          guitar.specs.topWood == searchGuitarSpecs.topWood) {
+      if (guitar.specs.matches(searchGuitarSpecs)) {
         matchingGuitars.add(guitar);
       }
     }
