@@ -22,6 +22,13 @@ OOA&D/
 │   │   ├── type.dart
 │   │   └── wood.dart
 │   └── main.dart              ← Runnable entry point
+├── chapter2/
+│   ├── summary/
+│   │   └── chapter2.md        ← Full chapter summary with use cases & Q&A
+│   ├── classes/
+│   │   ├── dog_door.dart
+│   │   └── remote.dart
+│   └── main.dart              ← Runnable entry point
 └── README.md
 ```
 
@@ -30,6 +37,7 @@ OOA&D/
 | Chapter | Title | Core Concept | Summary |
 |---------|-------|--------------|---------|
 | 1 | Well-Designed Apps Rock | Encapsulation & Delegation | [chapter1.md](chapter1/summery/chapter1.md) |
+| 2 | Gathering Requirements | Use Cases & Requirements Lists | [chapter2.md](chapter2/summary/chapter2.md) |
 
 ## The 3-Step Framework (from Chapter 1)
 
@@ -49,6 +57,8 @@ Every chapter builds on this foundation:
 - **Delegation** — let objects hand off responsibilities to specialists
 - **Enums over strings** — type-safe and value-safe; eliminates an entire class of bugs
 - **Single Responsibility Principle** — one class, one reason to change
+- **Requirements gathering** — listen to the customer, then think beyond what they say
+- **Use cases** — one goal, one use case; always include main path and alternate paths
 
 ## Running the Code
 
@@ -57,4 +67,7 @@ Requires the [Dart SDK](https://dart.dev/get-dart).
 ```bash
 # Run Chapter 1 example
 dart run chapter1/main.dart
+
+# Run Chapter 2 example
+dart run chapter2/main.dart
 ```
