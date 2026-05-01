@@ -48,29 +48,28 @@ OOA&D/
 | 2 | Gathering Requirements | Use Cases & Requirements Lists | [chapter2.md](chapter2/summary/chapter2.md) |
 | 3 | Requirements Change | Change, Cohesion & OCP | [chapter3.md](chapter3/summary/chapter3.md) |
 
-## The 3-Step Framework (from Chapter 1)
+## What Each Chapter Is About
 
-Every chapter builds on this foundation:
+**Chapter 1 — Well-Designed Apps Rock**
+- Great software works for the customer, applies OO principles, and strives for a maintainable design
+- Use enums instead of strings to eliminate case-mismatch bugs at compile time
+- Encapsulate related properties into their own class (e.g. `GuitarSpec`) to isolate what varies
+- Delegate comparison logic to the object being compared — `GuitarSpec.matches()` instead of manual field checks in `Inventory`
+- When adding a new property only touches one class, your design is working
 
-```
-1. Make it WORK   → satisfy the customer's actual requirements
-       ↓
-2. Make it FLEXIBLE → apply OO principles (encapsulation, delegation)
-       ↓
-3. Make it MAINTAINABLE → strive for reusable, loosely-coupled design
-```
+**Chapter 2 — Gathering Requirements**
+- Write a requirements list before writing any code — each requirement must be testable
+- A use case = one customer goal; it has a clear value, a start/stop condition, and an external initiator
+- The main path is the happy path; alternate paths handle what can go wrong — both are part of the same use case
+- Cross-check every use case step against your requirements list — any uncovered step needs a new requirement
+- Use cases reveal requirements the customer never thought to mention
 
-## Key OO Concepts Covered So Far
-
-- **Encapsulation** — group what belongs together; isolate what changes from what doesn't
-- **Delegation** — let objects hand off responsibilities to specialists
-- **Enums over strings** — type-safe and value-safe; eliminates an entire class of bugs
-- **Single Responsibility Principle** — one class, one reason to change
-- **Requirements gathering** — listen to the customer, then think beyond what they say
-- **Use cases** — one goal, one use case; always include main path and alternate paths
-- **Open/Closed Principle** — classes open for extension, closed for modification
-- **Cohesion** — each class does one thing well; low cohesion is a warning sign
-- **BarkRecognizer** — decouples hardware events from door control, no remote needed
+**Chapter 3 — Requirements Change**
+- Requirements always change — good use cases make handling change cheap
+- When requirements change: update the use case first, then requirements, then code
+- A scenario is one complete path through a use case; one use case can have many scenarios
+- The main path should reflect what happens most often — promote the common case out of the alternate paths
+- **"Encapsulate what varies"** — isolate behavior that changes or is triggered from multiple places into the class that owns it (auto-close lives in `DogDoor`, not in `Remote` and `BarkRecognizer`)
 
 ## Running the Code
 
