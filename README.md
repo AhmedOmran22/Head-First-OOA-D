@@ -29,6 +29,14 @@ OOA&D/
 │   │   ├── dog_door.dart
 │   │   └── remote.dart
 │   └── main.dart              ← Runnable entry point
+├── chapter3/
+│   ├── summary/
+│   │   └── chapter3.md        ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── dog_door.dart
+│   │   ├── remote.dart
+│   │   └── bark_recognizer.dart
+│   └── main.dart              ← Runnable entry point
 └── README.md
 ```
 
@@ -38,6 +46,7 @@ OOA&D/
 |---------|-------|--------------|---------|
 | 1 | Well-Designed Apps Rock | Encapsulation & Delegation | [chapter1.md](chapter1/summery/chapter1.md) |
 | 2 | Gathering Requirements | Use Cases & Requirements Lists | [chapter2.md](chapter2/summary/chapter2.md) |
+| 3 | Requirements Change | Change, Cohesion & OCP | [chapter3.md](chapter3/summary/chapter3.md) |
 
 ## The 3-Step Framework (from Chapter 1)
 
@@ -59,6 +68,9 @@ Every chapter builds on this foundation:
 - **Single Responsibility Principle** — one class, one reason to change
 - **Requirements gathering** — listen to the customer, then think beyond what they say
 - **Use cases** — one goal, one use case; always include main path and alternate paths
+- **Open/Closed Principle** — classes open for extension, closed for modification
+- **Cohesion** — each class does one thing well; low cohesion is a warning sign
+- **BarkRecognizer** — decouples hardware events from door control, no remote needed
 
 ## Running the Code
 
@@ -70,4 +82,7 @@ dart run chapter1/main.dart
 
 # Run Chapter 2 example
 dart run chapter2/main.dart
+
+# Run Chapter 3 example
+dart run chapter3/main.dart
 ```
