@@ -37,6 +37,15 @@ OOA&D/
 │   │   ├── remote.dart
 │   │   └── bark_recognizer.dart
 │   └── main.dart              ← Runnable entry point
+├── chapter4/
+│   ├── summary/
+│   │   └── chapter4.md        ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── bark.dart
+│   │   ├── dog_door.dart
+│   │   ├── bark_recognizer.dart
+│   │   └── remote.dart
+│   └── main.dart              ← Runnable entry point
 └── README.md
 ```
 
@@ -47,6 +56,7 @@ OOA&D/
 | 1 | Well-Designed Apps Rock | Encapsulation & Delegation | [chapter1.md](chapter1/summery/chapter1.md) |
 | 2 | Gathering Requirements | Use Cases & Requirements Lists | [chapter2.md](chapter2/summary/chapter2.md) |
 | 3 | Requirements Change | Change, Cohesion & OCP | [chapter3.md](chapter3/summary/chapter3.md) |
+| 4 | Analysis | Textual Analysis & Real-World Design | [chapter4.md](chapter4/summary/chapter4.md) |
 
 ## What Each Chapter Is About
 
@@ -71,6 +81,15 @@ OOA&D/
 - The main path should reflect what happens most often — promote the common case out of the alternate paths
 - **"Encapsulate what varies"** — isolate behavior that changes or is triggered from multiple places into the class that owns it (auto-close lives in `DogDoor`, not in `Remote` and `BarkRecognizer`)
 
+**Chapter 4 — Analysis**
+- **Analysis** = anticipating real-world problems before they hit your customers; build software that works outside the controlled test environment
+- **Textual analysis**: circle every noun in your use case → candidate classes; circle every verbs → candidate methods
+- Not every noun becomes a class — external actors (the dog owner), physical locations, and things already represented elsewhere don't need their own class
+- Words in use cases matter: "if it's the owner's **dog** barking" vs. "if the bark matches" → completely different class designs
+- A dog can bark in multiple ways — store a `List<Bark>` (the whole dog), not a single `String` (one sound)
+- **Delegation shields from change**: `BarkRecognizer` delegates bark comparison to `Bark.equals()` — if comparison logic ever changes, only `Bark` changes
+- Class diagrams give you the 10,000-foot view; use cases and requirements fill in the implementation details
+
 ## Running the Code
 
 Requires the [Dart SDK](https://dart.dev/get-dart).
@@ -84,4 +103,7 @@ dart run chapter2/main.dart
 
 # Run Chapter 3 example
 dart run chapter3/main.dart
+
+# Run Chapter 4 example
+dart run chapter4/main.dart
 ```
