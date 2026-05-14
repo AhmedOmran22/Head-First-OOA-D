@@ -1,0 +1,1 @@
+enum Style { a, f }

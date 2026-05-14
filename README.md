@@ -46,6 +46,37 @@ OOA&D/
 │   │   ├── bark_recognizer.dart
 │   │   └── remote.dart
 │   └── main.dart              ← Runnable entry point
+├── chapter5p1/
+│   ├── summary/
+│   │   └── chapter5p1.md      ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── instrument.dart
+│   │   ├── instrument_specs.dart
+│   │   ├── guitar.dart
+│   │   ├── guitar_specs.dart
+│   │   ├── mandolin.dart
+│   │   ├── mandolin_specs.dart
+│   │   └── inventory.dart
+│   ├── enums/
+│   │   ├── builder.dart
+│   │   ├── type.dart
+│   │   ├── wood.dart
+│   │   └── style.dart
+│   └── main.dart              ← Runnable entry point
+├── chapter5p2/
+│   ├── summary/
+│   │   └── chapter5p2.md      ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── instrument.dart
+│   │   ├── instrument_spec.dart
+│   │   └── inventory.dart
+│   ├── enums/
+│   │   ├── builder.dart
+│   │   ├── type.dart
+│   │   ├── wood.dart
+│   │   ├── style.dart
+│   │   └── instrument_type.dart
+│   └── main.dart              ← Runnable entry point
 └── README.md
 ```
 
@@ -57,6 +88,8 @@ OOA&D/
 | 2 | Gathering Requirements | Use Cases & Requirements Lists | [chapter2.md](chapter2/summary/chapter2.md) |
 | 3 | Requirements Change | Change, Cohesion & OCP | [chapter3.md](chapter3/summary/chapter3.md) |
 | 4 | Analysis | Textual Analysis & Real-World Design | [chapter4.md](chapter4/summary/chapter4.md) |
+| 5 (Part 1) | Good Design = Flexible Software | Abstract Classes & Inheritance | [chapter5p1.md](chapter5p1/summary/chapter5p1.md) |
+| 5 (Part 2) | Give Your Software a 30-Minute Workout | Cohesion, Loose Coupling & Map Properties | [chapter5p2.md](chapter5p2/summary/chapter5p2.md) |
 
 ## What Each Chapter Is About
 
@@ -90,6 +123,24 @@ OOA&D/
 - **Delegation shields from change**: `BarkRecognizer` delegates bark comparison to `Bark.equals()` — if comparison logic ever changes, only `Bark` changes
 - Class diagrams give you the 10,000-foot view; use cases and requirements fill in the implementation details
 
+**Chapter 5 Part 1 — Good Design = Flexible Software**
+- The true test of good design is how easily it handles change — adding mandolin support revealed where Rick's guitar app cracked
+- **Abstract classes** are placeholders: they define shared behavior across instrument types but cannot be instantiated directly
+- Pull common fields (`builder`, `model`, `type`, `backWood`, `topWood`) into an abstract `InstrumentSpec`; subclasses only add what's unique (`numStrings`, `style`)
+- **OO Principle 1 — Code to an interface, not an implementation**: write methods that take the abstract type and they work with any current or future subclass
+- **OO Principle 2 — Encapsulate what varies**: isolate behavior that changes into its own class so the stable parts never need touching
+- **OO Principle 3 — Single Responsibility Principle**: each class has exactly one reason to change; split any class that does too many things
+- The Part 1 design still has flaws: `instanceof` checks in `addInstrument()`, separate `search()` per type, and empty subclasses — all fixed in Part 2
+
+**Chapter 5 Part 2 — Give Your Software a 30-Minute Workout**
+- **Subclasses are for different behavior, not different properties** — `Guitar` and `Mandolin` behaved identically, so they were deleted; `InstrumentType` enum replaces them
+- **"Double encapsulation"**: encapsulate the spec away from the instrument, then encapsulate the properties inside the spec into a `Map<String, Object>`
+- One concrete `InstrumentSpec` with a `Map` replaces all spec subclasses — adding a new property requires zero class changes
+- One `search(InstrumentSpec)` method replaces all type-specific search methods — works for any instrument, including ones not yet invented
+- **Cohesion = one class, one job**: `Inventory` manages the list, `Instrument` holds one instrument's data, `InstrumentSpec` holds one instrument's properties — each highly cohesive
+- **High cohesion → loose coupling**: when each class does one thing, changes to one class don't cascade into others
+- Good designs emerge from bad ones; never be afraid to throw away a design decision you made earlier — that's maturity, not failure
+
 ## Running the Code
 
 Requires the [Dart SDK](https://dart.dev/get-dart).
@@ -106,4 +157,10 @@ dart run chapter3/main.dart
 
 # Run Chapter 4 example
 dart run chapter4/main.dart
+
+# Run Chapter 5 Part 1 example
+dart run chapter5p1/main.dart
+
+# Run Chapter 5 Part 2 example
+dart run chapter5p2/main.dart
 ```
