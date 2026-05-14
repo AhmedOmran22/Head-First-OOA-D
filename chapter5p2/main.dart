@@ -9,7 +9,7 @@ import 'enums/wood.dart';
 void main() {
   final inventory = Inventory();
   _initializeInventory(inventory);
-``
+
   final properties = <String, Object>{
     'builder': Builder.gibson,
     'backWood': Wood.maple,
