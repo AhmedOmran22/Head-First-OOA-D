@@ -77,6 +77,9 @@ OOA&D/
 │   │   ├── style.dart
 │   │   └── instrument_type.dart
 │   └── main.dart              ← Runnable entry point
+├── chapter6/
+│   └── summary/
+│       └── chapter6.md        ← Full chapter summary with Q&A
 └── README.md
 ```
 
@@ -90,6 +93,7 @@ OOA&D/
 | 4 | Analysis | Textual Analysis & Real-World Design | [chapter4.md](chapter4/summary/chapter4.md) |
 | 5 (Part 1) | Good Design = Flexible Software | Abstract Classes & Inheritance | [chapter5p1.md](chapter5p1/summary/chapter5p1.md) |
 | 5 (Part 2) | Give Your Software a 30-Minute Workout | Cohesion, Loose Coupling & Map Properties | [chapter5p2.md](chapter5p2/summary/chapter5p2.md) |
+| 6 | Solving Really Big Problems | Feature Lists, Use Case Diagrams & Domain Analysis | [chapter6.md](chapter6/summary/chapter6.md) |
 
 ## What Each Chapter Is About
 
@@ -141,6 +145,16 @@ OOA&D/
 - **High cohesion → loose coupling**: when each class does one thing, changes to one class don't cascade into others
 - Good designs emerge from bad ones; never be afraid to throw away a design decision you made earlier — that's maturity, not failure
 
+**Chapter 6 — Solving Really Big Problems**
+- Big problems are just lots of small problems — every tool you've learned (requirements, use cases, OO principles) applies at any scale
+- **Commonality & variability**: ask what the system is *like* (commonality) and what it is *not like* (variability) to understand a new system before you have enough info to write requirements
+- **Feature lists** capture the big things the system needs to do in the customer's language; one feature typically expands into multiple requirements
+- **Use case diagrams** are the blueprints — they show the system boundary, actors, and use cases at 10,000 feet without getting lost in detail; always defer detail as long as you can
+- **Actors aren't always people** — any external entity that interacts with the system (including another system, like the game itself) is an actor
+- **Domain analysis** keeps you speaking the customer's language; show Gary a feature list, not a class diagram
+- Break the big system into **modules** — each handles one focused area; no module should be responsible for everything, and no module should have only one class
+- **Design patterns are a last step** — apply OO principles first, and patterns (like MVC) often emerge naturally once the structure is clean
+
 ## Running the Code
 
 Requires the [Dart SDK](https://dart.dev/get-dart).
@@ -163,4 +177,6 @@ dart run chapter5p1/main.dart
 
 # Run Chapter 5 Part 2 example
 dart run chapter5p2/main.dart
+
+# Chapter 6 — summary only, no runnable code (focuses on design-level tools: feature lists, use case diagrams, domain analysis)
 ```
