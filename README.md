@@ -80,6 +80,14 @@ OOA&D/
 ├── chapter6/
 │   └── summary/
 │       └── chapter6.md        ← Full chapter summary with Q&A
+├── chapter7/
+│   ├── summary/
+│   │   └── chapter7.md        ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── board.dart
+│   │   ├── tile.dart
+│   │   └── unit.dart
+│   └── main.dart              ← Runnable entry point (Board Scenario)
 └── README.md
 ```
 
@@ -94,6 +102,7 @@ OOA&D/
 | 5 (Part 1) | Good Design = Flexible Software | Abstract Classes & Inheritance | [chapter5p1.md](chapter5p1/summary/chapter5p1.md) |
 | 5 (Part 2) | Give Your Software a 30-Minute Workout | Cohesion, Loose Coupling & Map Properties | [chapter5p2.md](chapter5p2/summary/chapter5p2.md) |
 | 6 | Solving Really Big Problems | Feature Lists, Use Case Diagrams & Domain Analysis | [chapter6.md](chapter6/summary/chapter6.md) |
+| 7 | Architecture | The 3 Qs, Reducing Risk & Scenarios | [chapter7.md](chapter7/summary/chapter7.md) |
 
 ## What Each Chapter Is About
 
@@ -155,6 +164,14 @@ OOA&D/
 - Break the big system into **modules** — each handles one focused area; no module should be responsible for everything, and no module should have only one class
 - **Design patterns are a last step** — apply OO principles first, and patterns (like MVC) often emerge naturally once the structure is clean
 
+**Chapter 7 — Architecture**
+- **Architecture** = your design structure — the most important parts of the app and the relationships between them; it turns a chaotic pile of features and diagrams into a well-ordered application
+- **The 3 Qs** find what's *architecturally significant*: Q1 — is it part of the **essence** of the system? Q2 — what does it **mean** (is it unclear)? Q3 — how do I **do** it (is it hard/new)? Any one flag is enough
+- **Architecture is about reducing RISK** — you tackle significant features first not because they're "important" but because they carry the most risk; it doesn't matter which one you start with, only that you're always reducing risk
+- **Scenarios** are lightweight, single-path use cases — the Board Scenario revealed a missing `removeUnit()` requirement before the customer ever saw the work
+- **Commonality runs deeper than property names** — tanks, soldiers, and airplanes share no field names, but all have a *type* and a set of name/value pairs; `Unit` models that with a `Map<String, Object>` (same pattern as Chapter 5 Part 2)
+- **Focus on one feature at a time and build on what you have** — `Board` delegates unit ops to `Tile`, and `Unit` started as a bare stub until its key feature came up
+
 ## Running the Code
 
 Requires the [Dart SDK](https://dart.dev/get-dart).
@@ -179,4 +196,7 @@ dart run chapter5p1/main.dart
 dart run chapter5p2/main.dart
 
 # Chapter 6 — summary only, no runnable code (focuses on design-level tools: feature lists, use case diagrams, domain analysis)
+
+# Run Chapter 7 example (Gary's Game System Framework — Board Scenario)
+dart run chapter7/main.dart
 ```
