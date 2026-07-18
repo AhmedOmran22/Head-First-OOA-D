@@ -88,6 +88,17 @@ OOA&D/
 │   │   ├── tile.dart
 │   │   └── unit.dart
 │   └── main.dart              ← Runnable entry point (Board Scenario)
+├── chapter8/
+│   ├── summary/
+│   │   └── chapter8.md        ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── instrument_spec.dart, guitar_spec.dart   (OCP)
+│   │   ├── dog_door.dart                            (DRY)
+│   │   ├── automobile.dart, driver.dart, car_wash.dart, mechanic.dart, tire.dart  (SRP)
+│   │   ├── board.dart, tile.dart, three_d_board.dart  (LSP + delegation)
+│   │   ├── unit.dart, weapon.dart                   (composition)
+│   │   └── instrument.dart                          (aggregation)
+│   └── main.dart              ← Runnable entry point (principle demos)
 └── README.md
 ```
 
@@ -103,6 +114,7 @@ OOA&D/
 | 5 (Part 2) | Give Your Software a 30-Minute Workout | Cohesion, Loose Coupling & Map Properties | [chapter5p2.md](chapter5p2/summary/chapter5p2.md) |
 | 6 | Solving Really Big Problems | Feature Lists, Use Case Diagrams & Domain Analysis | [chapter6.md](chapter6/summary/chapter6.md) |
 | 7 | Architecture | The 3 Qs, Reducing Risk & Scenarios | [chapter7.md](chapter7/summary/chapter7.md) |
+| 8 | Design Principles | OCP, DRY, SRP, LSP & Alternatives to Inheritance | [chapter8.md](chapter8/summary/chapter8.md) |
 
 ## What Each Chapter Is About
 
@@ -172,6 +184,14 @@ OOA&D/
 - **Commonality runs deeper than property names** — tanks, soldiers, and airplanes share no field names, but all have a *type* and a set of name/value pairs; `Unit` models that with a `Map<String, Object>` (same pattern as Chapter 5 Part 2)
 - **Focus on one feature at a time and build on what you have** — `Board` delegates unit ops to `Tile`, and `Unit` started as a bare stub until its key feature came up
 
+**Chapter 8 — Design Principles: Originality is Overrated**
+- **A design principle** is a reusable tool/technique that makes code more maintainable, flexible, or extensible — smart developers already solved these problems, so don't reinvent the wheel
+- **OCP (Open-Closed)** — classes are **open for extension, closed for modification**; lock down working code and extend it by subclassing/overriding (`InstrumentSpec.matches()` stays closed, `GuitarSpec` overrides it)
+- **DRY (Don't Repeat Yourself)** — every piece of information and behavior lives in **one sensible place**; applies to requirements too, not just code (the dog-door timer belongs only in `DogDoor.open()`)
+- **SRP (Single Responsibility)** — one responsibility, one reason to change; use the test *"The [Class] [method]s itself"* to move `drive()`/`wash()`/`changeTires()` off `Automobile` and onto `Driver`/`CarWash`/`Mechanic`. Cohesion = SRP
+- **LSP (Liskov Substitution)** — subtypes must be substitutable for their base types; `ThreeDBoard extends Board` violates LSP because 2D `(x, y)` methods are meaningless in 3D
+- **Beyond inheritance** — prefer **delegation** (use another class's behavior as-is: `ThreeDBoard` holds Boards), **composition** (own a family of behaviors, swap at runtime: `Unit` ◆ `Weapon`), and **aggregation** (composition without ownership, the part lives on: `Instrument` ◇ `InstrumentSpec`)
+
 ## Running the Code
 
 Requires the [Dart SDK](https://dart.dev/get-dart).
@@ -199,4 +219,7 @@ dart run chapter5p2/main.dart
 
 # Run Chapter 7 example (Gary's Game System Framework — Board Scenario)
 dart run chapter7/main.dart
+
+# Run Chapter 8 example (OCP, DRY, SRP, LSP + delegation/composition/aggregation demos)
+dart run chapter8/main.dart
 ```
