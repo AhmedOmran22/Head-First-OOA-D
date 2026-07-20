@@ -99,6 +99,16 @@ OOA&D/
 │   │   ├── unit.dart, weapon.dart                   (composition)
 │   │   └── instrument.dart                          (aggregation)
 │   └── main.dart              ← Runnable entry point (principle demos)
+├── chapter9/
+│   ├── summary/
+│   │   └── chapter9.md        ← Full chapter summary with Q&A
+│   ├── classes/
+│   │   ├── unit.dart          (completed Unit + programming by contract)
+│   │   ├── unit_group.dart    (armies, Map<int, Unit>)
+│   │   ├── weapon.dart        (stub — only what the feature needs)
+│   │   ├── unit_tester.dart       (test cases 1–4)
+│   │   └── unit_group_tester.dart (test cases 10–15)
+│   └── main.dart              ← Runnable entry point (runs all test cases)
 └── README.md
 ```
 
@@ -115,6 +125,7 @@ OOA&D/
 | 6 | Solving Really Big Problems | Feature Lists, Use Case Diagrams & Domain Analysis | [chapter6.md](chapter6/summary/chapter6.md) |
 | 7 | Architecture | The 3 Qs, Reducing Risk & Scenarios | [chapter7.md](chapter7/summary/chapter7.md) |
 | 8 | Design Principles | OCP, DRY, SRP, LSP & Alternatives to Inheritance | [chapter8.md](chapter8/summary/chapter8.md) |
+| 9 | Iterating and Testing | Test Cases, Feature Driven Dev & Programming by Contract | [chapter9.md](chapter9/summary/chapter9.md) |
 
 ## What Each Chapter Is About
 
@@ -192,6 +203,16 @@ OOA&D/
 - **LSP (Liskov Substitution)** — subtypes must be substitutable for their base types; `ThreeDBoard extends Board` violates LSP because 2D `(x, y)` methods are meaningless in 3D
 - **Beyond inheritance** — prefer **delegation** (use another class's behavior as-is: `ThreeDBoard` holds Boards), **composition** (own a family of behaviors, swap at runtime: `Unit` ◆ `Weapon`), and **aggregation** (composition without ownership, the part lives on: `Instrument` ◇ `InstrumentSpec`)
 
+**Chapter 9 — Iterating and Testing: The Software is Still for the Customer**
+- **The customer wants running code, not diagrams** — all the principles in the world don't matter if you never ship something that works
+- **Two ways to iterate deeper**: **feature driven** (take one feature to completion — faster to show the customer, good for many disconnected features) and **use case driven** (implement one scenario end to end — better for complex, process-heavy flows). Most real projects mix both, plus test driven
+- **Write tests first** — knowing your tests tells you exactly what code to write. A good test case has **5 parts**: ID/name, one specific thing tested, input, expected output, and starting state; keep each test **atomic**
+- **Test incorrect usage too** — non-existent properties and empty states catch bugs before the customer does
+- **Design decisions are tradeoffs** — commonality (typed `id`/`name`/`weapons` fields, better discoverability, but risks DRY violations) vs. encapsulation (everything in the Map, maximum flexibility, but loses explicit structure). The chapter picks commonality for `Unit`
+- **Programming by contract vs. defensive programming** — contract trusts competent callers and throws unchecked exceptions on violation; defensive distrusts callers and does exhaustive checks. The choice is driven by your *customer*, not your preference
+- **Lazy initialization matters at scale** — with thousands of units, don't allocate an empty List/Map for each one (`??=` in Dart)
+- **Iteration is fractal** — you iterate between features, between behaviors within a feature, and between design options; reevaluate earlier decisions and avoid **analysis paralysis**
+
 ## Running the Code
 
 Requires the [Dart SDK](https://dart.dev/get-dart).
@@ -222,4 +243,7 @@ dart run chapter7/main.dart
 
 # Run Chapter 8 example (OCP, DRY, SRP, LSP + delegation/composition/aggregation demos)
 dart run chapter8/main.dart
+
+# Run Chapter 9 example (runs the Unit + UnitGroup test cases)
+dart run chapter9/main.dart
 ```
