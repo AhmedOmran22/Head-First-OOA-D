@@ -109,6 +109,17 @@ OOA&D/
 │   │   ├── unit_tester.dart       (test cases 1–4)
 │   │   └── unit_group_tester.dart (test cases 10–15)
 │   └── main.dart              ← Runnable entry point (runs all test cases)
+├── chapter10/
+│   ├── summary/
+│   │   └── chapter10.md       ← Full chapter summary with Q&A
+│   ├── data/
+│   │   └── ObjectvilleSubway.txt   ← The subway network input file
+│   ├── classes/
+│   │   ├── station.dart, connection.dart, subway.dart  (Subway module)
+│   │   ├── subway_loader.dart                          (Loader module)
+│   │   ├── subway_printer.dart                         (Printer module)
+│   │   └── load_tester.dart, subway_tester.dart        (Test module)
+│   └── main.dart              ← Runnable entry point (RouteFinder)
 └── README.md
 ```
 
@@ -126,6 +137,7 @@ OOA&D/
 | 7 | Architecture | The 3 Qs, Reducing Risk & Scenarios | [chapter7.md](chapter7/summary/chapter7.md) |
 | 8 | Design Principles | OCP, DRY, SRP, LSP & Alternatives to Inheritance | [chapter8.md](chapter8/summary/chapter8.md) |
 | 9 | Iterating and Testing | Test Cases, Feature Driven Dev & Programming by Contract | [chapter9.md](chapter9/summary/chapter9.md) |
+| 10 | The OOA&D Lifecycle | Putting It All Together — the Objectville RouteFinder | [chapter10.md](chapter10/summary/chapter10.md) |
 
 ## What Each Chapter Is About
 
